@@ -1,6 +1,6 @@
 <h1>QuickChat</h1>
 
-<a href="https://radiant-ganache-5a0f50.netlify.app/">Live Demo</a>
+<h2><a href="https://radiant-ganache-5a0f50.netlify.app/">Live Demo</a></h2>
 
 <h2>Features</h2>
 <ul>
