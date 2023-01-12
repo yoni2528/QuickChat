@@ -23,12 +23,7 @@ app.use(express.static(`${__dirname}/public`));
 
 app.use(
   cors({
-    origin: [
-      "https://imaginative-lebkuchen-ee93e7.netlify.app",
-      "http://192.168.1.81:5173",
-      "http://127.0.0.1:5173",
-      "http://127.0.0.1:5173/",
-    ],
+    origin: ["http://192.168.1.81:5173", "http://127.0.0.1:5173", "http://127.0.0.1:5173/"],
   })
 );
 
@@ -47,11 +42,7 @@ app.use((err, req, res, next) => {
 
 const io = new Server(http, {
   cors: {
-    origin: [
-      "http://127.0.0.1:5173",
-      "https://imaginative-lebkuchen-ee93e7.netlify.app",
-      "http://192.168.1.81:5173",
-    ],
+    origin: ["http://127.0.0.1:5173", "https://imaginative-lebkuchen-ee93e7.netlify.app", "http://192.168.1.81:5173"],
     methods: ["POST", "GET"],
   },
 });
