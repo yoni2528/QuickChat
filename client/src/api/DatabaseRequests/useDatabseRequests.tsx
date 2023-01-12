@@ -3,16 +3,19 @@
 import { useMutation } from "react-query";
 
 import useUploadImage from "./useUploadImage";
-import { signUp, login, getMe } from "../ApiRoutes/UserApi";
 import useApi from "../ApiRoutes/useApi";
 import { useContext } from "react";
 import { UserContext } from "../../store/context";
+
+import useAuthApi from "../ApiRoutes/useAuthApi";
 
 const useDatabseRequests = () => {
   const { getAllUsers, readUserMessages, createMessage, updateUserMessages, updateUserDetails } = useApi();
   const { profileImageUpload } = useUploadImage();
 
   const { handleStopSpinner, handleSetError } = useContext(UserContext);
+
+  const { signUp, login, getMe } = useAuthApi();
 
   const onError = (error: any) => {
     handleSetError({ isOpen: true, error: error.response.data.error, title: error.response.data.title });
