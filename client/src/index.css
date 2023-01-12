@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.file-upload {
+  /* Hide the original file input element */
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+  z-index: 2;
+  position: absolute;
+}
+
+/* Style the button that opens the file dialog */
+.file-upload::-webkit-file-upload-button {
+  /* Add some styling to the button */
+  background: #4285f4;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
