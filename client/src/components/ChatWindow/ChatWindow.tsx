@@ -27,7 +27,8 @@ const ChatWindow: React.FC<{
             : "invisible opacity-0 translate-y-[-100%] hidden"
         } bg-[#FFFFFF] transition duration-400 h-[10%] flex items-center p-4`}
       >
-        <img className="w-8 rounded-[50%]" src={`${BASE_URL}/${selectedUser?.image}`}></img>
+        {selectedUser?.image && <img className="w-8 rounded-[50%]" src={`${BASE_URL}/${selectedUser?.image}`}></img>}
+
         <p className="font-bold text-primary_grey">{selectedUser?.nickName}</p>
       </div>
       <div ref={messageWindowRef} className="bg-[#F2F7F7] h-full flex flex-col p-12 gap-4 overflow-y-scroll ">

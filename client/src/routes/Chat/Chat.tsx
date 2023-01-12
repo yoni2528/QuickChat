@@ -42,19 +42,12 @@ const Chat = () => {
     handleFetchMessages(currentUser.id);
     socket.emit("open_room", { userId: currentUser.id, nickName: currentUser.nickName });
 
-    return () => {
-      socket.removeAllListeners();
-      socket.close();
-    };
-  }, [currentUser, token]);
-
-  useEffect(() => {
     socket.on("recieve_message", ({ from, message, to }) => {
       setMessageList((prevState: any) => {
         return [...prevState, { to, from, message, read: false }];
       });
     });
-  }, []);
+  }, [currentUser, token, socket]);
 
   const handleUserChoosed = (userId: string, nickName: string, image: string) => {
     handleMobileMenuClose();
