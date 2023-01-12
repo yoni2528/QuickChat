@@ -28,6 +28,7 @@ app.use(
       "https://stupendous-bavarois-eac808.netlify.app",
       "https://quickchat-front.onrender.com",
       "http://127.0.0.1:5173",
+      "https://radiant-ganache-5a0f50.netlify.app",
     ],
   })
 );
@@ -52,6 +53,7 @@ const io = new Server(http, {
       "https://stupendous-bavarois-eac808.netlify.app",
       "https://quickchat-front.onrender.com",
       "http://127.0.0.1:5173",
+      "https://radiant-ganache-5a0f50.netlify.app",
     ],
     methods: ["POST", "GET"],
   },
