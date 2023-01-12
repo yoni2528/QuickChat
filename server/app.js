@@ -23,7 +23,12 @@ app.use(express.static(`${__dirname}/public`));
 
 app.use(
   cors({
-    origin: ["https://stupendous-bavarois-eac808.netlify.app", "https://quickchat-4ny4.onrender.com"],
+    // eslint-disable-next-line prettier/prettier
+    origin: [
+      "https://stupendous-bavarois-eac808.netlify.app",
+      "https://quickchat-front.onrender.com",
+      "http://127.0.0.1:5173",
+    ],
   })
 );
 
@@ -42,7 +47,12 @@ app.use((err, req, res, next) => {
 
 const io = new Server(http, {
   cors: {
-    origin: ["https://stupendous-bavarois-eac808.netlify.app", "https://quickchat-4ny4.onrender.com"],
+    // eslint-disable-next-line prettier/prettier
+    origin: [
+      "https://stupendous-bavarois-eac808.netlify.app",
+      "https://quickchat-front.onrender.com",
+      "http://127.0.0.1:5173",
+    ],
     methods: ["POST", "GET"],
   },
 });
