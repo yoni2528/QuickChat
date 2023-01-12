@@ -23,7 +23,7 @@ app.use(express.static(`${__dirname}/public`));
 
 app.use(
   cors({
-    origin: ["https://stupendous-bavarois-eac808.netlify.app/"],
+    origin: ["https://stupendous-bavarois-eac808.netlify.app", "https://quickchat-4ny4.onrender.com"],
   })
 );
 
@@ -42,7 +42,7 @@ app.use((err, req, res, next) => {
 
 const io = new Server(http, {
   cors: {
-    origin: ["https://stupendous-bavarois-eac808.netlify.app/"],
+    origin: ["https://stupendous-bavarois-eac808.netlify.app", "https://quickchat-4ny4.onrender.com"],
     methods: ["POST", "GET"],
   },
 });
