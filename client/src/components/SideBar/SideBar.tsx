@@ -11,7 +11,8 @@ const SideBar: React.FC<{
   selectedUser: any;
   onUserChoose: (userId: string, nickName: string, image: string) => void;
   messageList: any;
-}> = ({ userList, onUserChoose, messageList }) => {
+  onLogout: () => void;
+}> = ({ userList, onUserChoose, messageList, onLogout }) => {
   const [searchInput, setSearchInput] = useState<string>();
 
   const { handleLogout, isMobileMenuOpen, handleMobileMenuToggle } = useContext(UserContext);
@@ -54,7 +55,13 @@ const SideBar: React.FC<{
             }
           </div>
         </div>
-        <button className="absolute bottom-6 left-[14%] text-white z-10 " onClick={handleLogout}>
+        <button
+          className="absolute bottom-6 left-[14%] text-white z-10 "
+          onClick={() => {
+            handleLogout();
+            onLogout();
+          }}
+        >
           Logout
         </button>
       </div>

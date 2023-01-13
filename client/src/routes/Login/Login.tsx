@@ -19,8 +19,8 @@ const Login: React.FC<{
         } transition duration-300 bg-[white] p-10 w-full sm:w-1/2 flex flex-col items-left justify-center gap-4 animate-[enter_1s]`}
       >
         <div className="flex flex-col">
-          <h2 className="text-3xl text-primary_grey font-medium mb-2">Welcome to QuickChat</h2>
-          <h2 className="text-md text-primary_grey  mb-2">login to start chatting with friends and family</h2>
+          <h2 className="text-lg md:text-2xl text-primary_grey font-medium mb-2">Welcome to QuickChat</h2>
+          <h2 className="text-sm text-primary_grey  mb-2">login to start chatting with friends and family</h2>
         </div>
         <LoginForm onLogin={onLogin} />
         <p className="text-primary_grey">

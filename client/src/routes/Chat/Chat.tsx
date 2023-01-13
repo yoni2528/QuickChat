@@ -25,7 +25,7 @@ export type UserType = {
 const socket = io.connect(BASE_URL);
 
 const Chat = () => {
-  const { currentUser, token, handleMobileMenuClose } = useContext(UserContext);
+  const { currentUser, token, handleMobileMenuClose, handleOnlineUserList } = useContext(UserContext);
   const { handleGetAllUsers, handleGetAllMessagesForUser, handleCreateMessage, handleUpdateMessageRead } =
     useDatabseRequests();
 
@@ -46,6 +46,10 @@ const Chat = () => {
       setMessageList((prevState: any) => {
         return [...prevState, { to, from, message, read: false }];
       });
+    });
+
+    socket.on("room_toggle", (onlineList) => {
+      handleOnlineUserList(onlineList);
     });
   }, [currentUser, token, socket]);
 
@@ -81,6 +85,10 @@ const Chat = () => {
     handleGetAllMessagesForUser.mutateAsync(id).then((data) => setMessageList(data.messages));
   };
 
+  const handleDisconnectFromSocket = () => {
+    socket.emit("disconnect-user", currentUser.id);
+  };
+
   return (
     <div className="h-[100vh] bg-[#eee] flex align-center ">
       <div className="w-[90%] lg:w-[65%] h-[80%] rounded-lg overflow-hidden m-auto flex relative animate-[enter_1s]  ">
@@ -89,6 +97,7 @@ const Chat = () => {
           onUserChoose={handleUserChoosed}
           userList={usersList}
           selectedUser={selectedUser}
+          onLogout={handleDisconnectFromSocket}
         />
         <div className="w-full flex flex-col">
           <ChatWindow messageList={messageList} selectedUser={selectedUser} />

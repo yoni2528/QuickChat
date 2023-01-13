@@ -7,9 +7,10 @@ type User = {
   onUserChoose: (_id: string, nickName: string, image: string) => void;
   userMessageList: any;
   image: string;
+  isOnline: boolean;
 };
 
-const User: React.FC<User> = ({ nickName, _id, onUserChoose, userMessageList, image }) => {
+const User: React.FC<User> = ({ nickName, _id, onUserChoose, userMessageList, image, isOnline }) => {
   const [unreadMessages, setUnreadMessages] = useState<any>();
   const [lastMessage, setLastMessage] = useState<any>("");
 
@@ -28,11 +29,13 @@ const User: React.FC<User> = ({ nickName, _id, onUserChoose, userMessageList, im
     <div className="flex items-center justify-between w-full text-white mt-4 bg-[white] rounded-lg py-2 px-3 shadow-2xl">
       <div className="flex gap-2 items-center">
         <div
-          className="w-8 h-8 md:w-12 md:h-12 bg-cover rounded-[50%]"
+          className="w-8 h-8 md:w-12 md:h-12 bg-cover rounded-[50%] relative"
           style={{
             backgroundImage: `url("${BASE_URL}/${image}")`,
           }}
-        ></div>
+        >
+          {isOnline && <div className="w-3 h-3 bg-[#33dc52] rounded-[50%] absolute right-1 top-0"></div>}
+        </div>
         <div>
           <button
             onClick={() => {

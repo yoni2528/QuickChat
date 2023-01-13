@@ -13,7 +13,7 @@ const messageRouter = require("./routers/messageRouter");
 
 const errorHelper = require("./utils/errorHelper");
 
-app.use(morgan("combined"));
+// app.use(morgan("combined"));
 
 app.use(express.json({ limit: "19kb" }));
 app.use(express.json());
@@ -64,14 +64,28 @@ global.activeUsers = new Map();
 io.on("connection", (socket) => {
   socket.on("open_room", ({ userId }) => {
     socket.join(userId);
+
+    global.activeUsers.set(socket.id, userId);
+    socket.broadcast.emit("room_toggle", Array.from(global.activeUsers.values()));
+    socket.emit("room_toggle", Array.from(global.activeUsers.values()));
   });
 
   socket.on("join_room", (userId) => {
     socket.join(userId);
   });
 
+  socket.on("disconnect-user", (userId) => {
+    global.activeUsers.delete(socket.id);
+    socket.broadcast.emit("room_toggle", Array.from(global.activeUsers.values()));
+  });
+
   socket.on("send_message", ({ to, message, from }) => {
     socket.in(to).emit("recieve_message", { message, from, to });
+  });
+
+  socket.on("disconnect", () => {
+    global.activeUsers.delete(socket.id);
+    socket.broadcast.emit("room_toggle", Array.from(global.activeUsers.values()));
   });
 });
 

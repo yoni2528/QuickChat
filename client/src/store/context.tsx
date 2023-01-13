@@ -10,6 +10,7 @@ type Props = {
 const value = {
   token: undefined || "",
   error: { error: "", isOpen: "", title: "" },
+  onlineUsersList: [],
   isMobileMenuOpen: false,
   isLoggedIn: false,
   isSpinnerLoading: false,
@@ -20,12 +21,13 @@ const value = {
   },
   handleSetToken: (token: string) => {},
   handleSetUser: (user: any) => {},
-  handleLogout: (user: any) => {},
+  handleLogout: () => {},
   handleStartSpinner: () => {},
   handleStopSpinner: () => {},
   handleSetError: ({ isOpen, title, error }: any) => {},
   handleMobileMenuToggle: () => {},
   handleMobileMenuClose: () => {},
+  handleOnlineUserList: (onlineList: any) => {},
 };
 
 export const UserContext = React.createContext(value);
@@ -36,6 +38,7 @@ const ContextProvider: React.FC<Props> = (props) => {
   const [isLoggedIn, setIsLoggedIn] = useState<any>("");
   const [isSpinnerLoading, setIsSpinnerLoading] = useState<any>("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [onlineUsersList, setOnlineUsersList] = useState([]);
   const [error, setError] = useState<any>({});
 
   const navigate = useNavigate();
@@ -74,6 +77,9 @@ const ContextProvider: React.FC<Props> = (props) => {
   const handleMobileMenuClose = () => {
     setIsMobileMenuOpen(false);
   };
+  const handleOnlineUserList = (userList: any) => {
+    setOnlineUsersList(userList);
+  };
 
   return (
     <UserContext.Provider
@@ -92,6 +98,8 @@ const ContextProvider: React.FC<Props> = (props) => {
         isMobileMenuOpen,
         handleMobileMenuToggle,
         handleMobileMenuClose,
+        handleOnlineUserList,
+        onlineUsersList,
       }}
     >
       {props.children}
