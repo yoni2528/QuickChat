@@ -1,6 +1,7 @@
 # QuickChat
 
 ## [Live Demo](https://radiant-ganache-5a0f50.netlify.app/)
+QuickChat is a real-time messaging app that allows users to communicate with their friends in real-time.
 
 ## Features
 - Real-time messaging with friends
