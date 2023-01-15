@@ -34,7 +34,7 @@ const User: React.FC<User> = ({ nickName, _id, onUserChoose, userMessageList, im
             backgroundImage: `url("${BASE_URL}/${image}")`,
           }}
         >
-          {isOnline && <div className="w-3 h-3 bg-[#33dc52] rounded-[50%] absolute right-1 top-0"></div>}
+          {isOnline && <div className="w-2 h-2 sm:h-3 sm:w-3 bg-[#33dc52] rounded-[50%] absolute right-1 top-0"></div>}
         </div>
         <div>
           <button

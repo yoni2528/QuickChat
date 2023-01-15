@@ -23,7 +23,6 @@ const useApi = () => {
   });
 
   const getAllUsers = async () => {
-    if (!token) return;
     handleStartSpinner();
 
     const response = await messageApi.get("/user");
@@ -31,41 +30,35 @@ const useApi = () => {
   };
 
   const createMessage = async (Message: Message) => {
-    if (!token) return;
     const response = await messageApi.post("/chat", Message);
     return response.data;
   };
 
   const readUserMessages = async (userId: string) => {
-    if (!token) return;
     handleStartSpinner();
     const response = await messageApi.get(`/chat/${userId}`);
     return response.data;
   };
 
   const updateUserMessages = async (userId: string) => {
-    if (!token) return;
     handleStartSpinner();
     const response = await messageApi.patch(`/chat/${userId}`);
     return response.data;
   };
 
   const deleteMessage = async (messageId: string) => {
-    if (!token) return;
     handleStartSpinner();
     const response = await messageApi.delete(`/chat/${messageId}`);
     return response.data;
   };
 
   const profileImageUpload = async (image: any) => {
-    if (!token) return;
     handleStartSpinner();
     const response = await messageApi.post(`/user/image`, image);
     return response.data;
   };
 
   const updateUserDetails = async (data: any) => {
-    if (!token) return;
     handleStartSpinner();
     const response = await messageApi.patch(`/user`, data);
     return response.data;

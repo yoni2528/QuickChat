@@ -9,10 +9,10 @@ const Spinner = () => {
   return (
     <div
       className={`w-full h-[100vh] absolute top-0 flex items-center justify-center ${
-        isSpinnerLoading ? "static" : "hidden"
-      } heigh-[100vh] bg-[#eeeeee0]  `}
+        isSpinnerLoading ? "static backdrop-blur-sm	" : "hidden"
+      } heigh-[100vh] bg-[#eeeeee0] z-12 `}
     >
-      <ImSpinner className="w-10 h-10 animate-spin text-secondary" />
+      <ImSpinner className="w-12 h-12 animate-spin text-secondary" />
     </div>
   );
 };

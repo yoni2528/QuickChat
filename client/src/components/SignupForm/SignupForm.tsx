@@ -7,37 +7,45 @@ import useDatabseRequests from "../../api/DatabaseRequests/useDatabseRequests";
 const SignupForm: React.FC<{ onLogin: (token: string, action: string) => void }> = ({ onLogin }) => {
   const [email, setEmail] = useState<string | undefined>();
   const [password, setPassowrd] = useState<string | undefined>();
-  const [nickName, setNickName] = useState<string | undefined>();
   const [passwordConfirm, setPasswordConfirm] = useState<string | undefined>();
 
-  const { handleSignUp } = useDatabseRequests();
-  const { handleSetUser } = useContext(UserContext);
+  const [isFormValid, setIsFormValid] = useState(true);
 
-  const handleEmailValidate = () => {
-    return true;
-  };
+  const { handleSignUp } = useDatabseRequests();
+  const { handleSetUser, loginDetails } = useContext(UserContext);
+
   const handleEmailChange = (email: string) => {
     setEmail(email);
+    return true;
   };
-  const handleNickNameChange = (email: string) => {
-    setNickName(email);
+
+  const handlePasswordConfirmChangeValidate = (passwordConfirm: string) => {
+    if (!passwordConfirm) return true;
+    if (passwordConfirm !== password) return false;
+    setPasswordConfirm(passwordConfirm);
+    return true;
   };
-  const handlePasswordConfirmChange = (email: string) => {
-    setPasswordConfirm(email);
-  };
-  const handlePassowrdChange = (passowrd: string) => {
+  const handlePassowrdChangeValidate = (passowrd: string) => {
+    if (!passowrd) return true;
+    if (passowrd.length < 6) return false;
+    if (passowrd.toLowerCase() === passowrd) return false;
     setPassowrd(passowrd);
-  };
-  const handlePasswordValidate = () => {
     return true;
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!email || !password || !passwordConfirm) {
+      setIsFormValid(false);
+
+      setTimeout(() => {
+        setIsFormValid(true);
+      }, 500);
+      return;
+    }
     const user = {
       email,
       password,
-      nickName,
       passwordConfirm,
     };
 
@@ -50,26 +58,26 @@ const SignupForm: React.FC<{ onLogin: (token: string, action: string) => void }>
   return (
     <form
       onSubmit={handleFormSubmit}
-      className={`${
-        handleSignUp.isSuccess ? "scale-0" : "scale-1"
-      } transition duration-300 bg-[white] flex flex-col gap-4 rounded-lg`}
+      className={`${handleSignUp.isSuccess ? "scale-0" : "scale-1"} ${
+        isFormValid ? "" : "animate-[shake_0.3s]"
+      }  transition duration-300 bg-[white] flex flex-col gap-4 rounded-lg`}
     >
-      <Input onChange={handleEmailChange} onValidate={handleEmailValidate} placeholder={"Email"} type={"email"}></Input>
       <Input
-        onChange={handleNickNameChange}
-        onValidate={handlePasswordValidate}
-        placeholder={"Full Name"}
-        type={"nickName"}
+        onChangeAndValidate={handleEmailChange}
+        defaultValue={loginDetails.email}
+        placeholder={"Email"}
+        type={"email"}
       ></Input>
       <Input
-        onChange={handlePassowrdChange}
-        onValidate={handlePasswordValidate}
+        onChangeAndValidate={handlePassowrdChangeValidate}
+        defaultValue={loginDetails.password}
+        invalidMessage={"Password must have more than 7 charcters and include at least one Capitalized letter"}
         placeholder={"Password"}
         type={"password"}
       ></Input>
       <Input
-        onChange={handlePasswordConfirmChange}
-        onValidate={handlePasswordValidate}
+        onChangeAndValidate={handlePasswordConfirmChangeValidate}
+        invalidMessage={"password must match"}
         placeholder={"Password Confirm"}
         type={"password"}
       ></Input>

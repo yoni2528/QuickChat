@@ -6,13 +6,7 @@ const router = express.Router();
 
 router.use(userContoller.protect);
 
-router
-  .route("/")
-  .post(messageController.createMessage)
-  .get(messageController.getMessages);
-router
-  .route("/:id")
-  .get(messageController.getUserMessages)
-  .patch(messageController.updateReadUserMessages);
+router.route("/").post(messageController.createMessage).get(messageController.getMessages);
+router.route("/:id").get(messageController.getUserMessages).patch(messageController.updateReadUserMessages);
 
 module.exports = router;

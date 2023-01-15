@@ -10,21 +10,17 @@ const LoginForm: React.FC<{ onLogin: (token: string, action: string) => void }> 
   const [password, setPassowrd] = useState<string | undefined>();
 
   const { handleLogin } = useDatabseRequests();
-  const { handleSetUser } = useContext(UserContext);
-
-  const handleEmailValidate = () => {
-    return true;
-  };
+  const { handleSetUser, handleLoginDetails, loginDetails } = useContext(UserContext);
 
   const handleEmailChange = (email: string) => {
     setEmail(email);
+    handleLoginDetails({ email });
+    return true;
   };
 
   const handlePassowrdChange = (passowrd: string) => {
     setPassowrd(passowrd);
-  };
-
-  const handlePasswordValidate = () => {
+    handleLoginDetails({ password });
     return true;
   };
 
@@ -35,6 +31,8 @@ const LoginForm: React.FC<{ onLogin: (token: string, action: string) => void }> 
       password,
     };
     handleLogin.mutateAsync(user).then((data) => handleSetUser(data.user));
+
+    return true;
   };
 
   useEffect(() => {
@@ -49,16 +47,16 @@ const LoginForm: React.FC<{ onLogin: (token: string, action: string) => void }> 
     <form className="flex flex-col gap-6" onSubmit={handleFormSubmit}>
       <div className="flex flex-col gap-1">
         <Input
-          onChange={handleEmailChange}
-          onValidate={handleEmailValidate}
+          defaultValue={loginDetails.email}
+          onChangeAndValidate={handleEmailChange}
           placeholder={"Email"}
           type={"email"}
         ></Input>
       </div>
       <div className="flex flex-col gap-1">
         <Input
-          onChange={handlePassowrdChange}
-          onValidate={handlePasswordValidate}
+          defaultValue={loginDetails.password}
+          onChangeAndValidate={handlePassowrdChange}
           placeholder={"Password"}
           type={"password"}
         ></Input>

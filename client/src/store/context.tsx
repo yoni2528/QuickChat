@@ -19,6 +19,8 @@ const value = {
     id: "",
     nickName: "",
   },
+  loginDetails: { email: "", password: "" },
+  handleLoginDetails: (loginDetails: any) => {},
   handleSetToken: (token: string) => {},
   handleSetUser: (user: any) => {},
   handleLogout: () => {},
@@ -39,7 +41,8 @@ const ContextProvider: React.FC<Props> = (props) => {
   const [isSpinnerLoading, setIsSpinnerLoading] = useState<any>("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [onlineUsersList, setOnlineUsersList] = useState([]);
-  const [error, setError] = useState<any>({});
+  const [error, setError] = useState<any>("");
+  const [loginDetails, setLoginDetails] = useState<any>({ email: "", password: "" });
 
   const navigate = useNavigate();
 
@@ -74,11 +77,19 @@ const ContextProvider: React.FC<Props> = (props) => {
   const handleMobileMenuToggle = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
   const handleMobileMenuClose = () => {
     setIsMobileMenuOpen(false);
   };
+
   const handleOnlineUserList = (userList: any) => {
     setOnlineUsersList(userList);
+  };
+
+  const handleLoginDetails = (userDetails: object) => {
+    setLoginDetails((prevState: any) => {
+      return { ...prevState, ...userDetails };
+    });
   };
 
   return (
@@ -100,6 +111,8 @@ const ContextProvider: React.FC<Props> = (props) => {
         handleMobileMenuClose,
         handleOnlineUserList,
         onlineUsersList,
+        loginDetails,
+        handleLoginDetails,
       }}
     >
       {props.children}

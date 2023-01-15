@@ -13,7 +13,7 @@ const messageRouter = require("./routers/messageRouter");
 
 const errorHelper = require("./utils/errorHelper");
 
-// app.use(morgan("combined"));
+app.use(morgan("combined"));
 
 app.use(express.json({ limit: "19kb" }));
 app.use(express.json());
@@ -74,7 +74,7 @@ io.on("connection", (socket) => {
     socket.join(userId);
   });
 
-  socket.on("disconnect-user", (userId) => {
+  socket.on("disconnect-user", () => {
     global.activeUsers.delete(socket.id);
     socket.broadcast.emit("room_toggle", Array.from(global.activeUsers.values()));
   });

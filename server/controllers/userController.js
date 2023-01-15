@@ -33,7 +33,6 @@ exports.signup = catchAsync(async (req, res) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
-    nickName: req.body.nickName,
   };
 
   const user = await User.create(userObj);
@@ -117,9 +116,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllUsers = catchAsync(async (req, res) => {
-  const users = await User.find({ _id: { $ne: req.user._id } }).select(
-    "-password -__v"
-  );
+  const users = await User.find({ _id: { $ne: req.user._id } }).select("-password -__v");
 
   res.status(200).json({
     status: "Succed",
@@ -169,13 +166,9 @@ exports.changeUserImage = catchAsync(async (req, res, next) => {
   const filePath = `${req.file.filename}`;
   const newfilePath = `${Date.now()}.jpg`;
 
-  fs.rename(
-    path.join("public", filePath),
-    path.join("public", newfilePath),
-    (err) => {
-      console.log(err);
-    }
-  );
+  fs.rename(path.join("public", filePath), path.join("public", newfilePath), (err) => {
+    console.log(err);
+  });
 
   const newData = await User.findByIdAndUpdate(
     req.user.id,

@@ -14,6 +14,7 @@ const UserList: React.FC<{ userList: any; messageList: any; searchInput: any; on
     <div>
       {userList
         .filter(({ nickName }: any) => {
+          if (!nickName) return;
           if (!searchInput) return nickName;
           return nickName.includes(searchInput) && nickName !== currentUser.nickName;
         })

@@ -13,7 +13,7 @@ const SideBar: React.FC<{
   messageList: any;
   onLogout: () => void;
 }> = ({ userList, onUserChoose, messageList, onLogout }) => {
-  const [searchInput, setSearchInput] = useState<string>();
+  const [searchInput, setSearchInput] = useState<string>("");
 
   const { handleLogout, isMobileMenuOpen, handleMobileMenuToggle } = useContext(UserContext);
 

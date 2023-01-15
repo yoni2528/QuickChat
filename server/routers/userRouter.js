@@ -8,18 +8,9 @@ router.route("/login").post(userContoller.login);
 
 router.use(userContoller.protect);
 
-router
-  .route("/image")
-  .post(
-    userContoller.deleteCurrentImage,
-    userContoller.uploadImage,
-    userContoller.changeUserImage
-  );
+router.route("/image").post(userContoller.deleteCurrentImage, userContoller.uploadImage, userContoller.changeUserImage);
 
-router
-  .route("/")
-  .get(userContoller.getAllUsers)
-  .patch(userContoller.updateUserDetails);
+router.route("/").get(userContoller.getAllUsers).patch(userContoller.updateUserDetails);
 router.route("/me").get(userContoller.getMe);
 
 module.exports = router;

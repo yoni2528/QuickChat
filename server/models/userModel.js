@@ -29,16 +29,16 @@ const userSchema = new mongoose.Schema({
   },
   nickName: {
     type: String,
-    required: [true, "a user most have nickname"],
-    unique: true,
+    default: "John Doe",
   },
   image: {
     type: String,
+    default: "avatar1",
   },
 });
 
 userSchema.pre("save", async function (next) {
-  const newPass = await bcrypt.hash(this.password, 12);
+  const newPass = await bcrypt.hash(this.password, 11);
   this.password = newPass;
   this.passwordConfirm = undefined;
   next();

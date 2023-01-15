@@ -15,7 +15,7 @@ const useUploadImage = () => {
   const { token, handleStartSpinner } = useContext(UserContext);
 
   const messageApi = Axios.create({
-    baseURL: BASE_URL,
+    baseURL: `${BASE_URL}/app/v1`,
     headers: {
       "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${token}`,
@@ -23,7 +23,6 @@ const useUploadImage = () => {
   });
 
   const profileImageUpload = async (image: any) => {
-    if (!token) return;
     handleStartSpinner();
     const response = await messageApi.post(`/user/image`, image);
     return response.data;

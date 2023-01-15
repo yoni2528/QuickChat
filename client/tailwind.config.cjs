@@ -16,6 +16,10 @@ module.exports = {
           "0%": { transform: "translateX(-1%)", opacity: 0 },
           "100%": { transform: "translateX(0)", opacity: 1 },
         },
+        shake: {
+          "0%": { transform: "translateX(-2%)" },
+          "100%": { transform: "translateX(0)" },
+        },
       },
     },
   },

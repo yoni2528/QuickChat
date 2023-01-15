@@ -6,10 +6,11 @@ import useUploadImage from "./useUploadImage";
 import useApi from "../ApiRoutes/useApi";
 import { useContext } from "react";
 import { UserContext } from "../../store/context";
-
+import { useNavigate } from "react-router-dom";
 import useAuthApi from "../ApiRoutes/useAuthApi";
 
 const useDatabseRequests = () => {
+  const navigate = useNavigate();
   const { getAllUsers, readUserMessages, createMessage, updateUserMessages, updateUserDetails } = useApi();
   const { profileImageUpload } = useUploadImage();
 
@@ -18,6 +19,10 @@ const useDatabseRequests = () => {
   const { signUp, login, getMe } = useAuthApi();
 
   const onError = (error: any) => {
+    if (error.response.data.title === "Token Error") {
+      navigate("/login");
+      localStorage.removeItem("token");
+    }
     handleSetError({ isOpen: true, error: error.response.data.error, title: error.response.data.title });
     console.log(error.response.data.error);
   };

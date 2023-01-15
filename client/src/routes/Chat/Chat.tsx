@@ -101,9 +101,11 @@ const Chat = () => {
         />
         <div className="w-full flex flex-col">
           <ChatWindow messageList={messageList} selectedUser={selectedUser} />
-          <div className="bg-[#FFFFFF] ">
-            <MessageField selectedUser={selectedUser?.nickName} onMessageSend={handleNewMessage} />
-          </div>
+          {selectedUser && (
+            <div className="bg-[#FFFFFF] ">
+              <MessageField selectedUser={selectedUser?.nickName} onMessageSend={handleNewMessage} />
+            </div>
+          )}
         </div>
         <ProfileSideBar />
       </div>

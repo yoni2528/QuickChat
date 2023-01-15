@@ -3,6 +3,8 @@ import { BASE_URL } from "../../config/config";
 import { UserContext } from "../../store/context";
 import DisplayMessages from "../DisplayMessages/DisplayMessages";
 
+import sadMan from "../../assets/sad-man.png";
+
 const ChatWindow: React.FC<{
   selectedUser: any;
   messageList: any;
@@ -31,8 +33,17 @@ const ChatWindow: React.FC<{
 
         <p className="font-bold text-primary_grey">{selectedUser?.nickName}</p>
       </div>
+
       <div ref={messageWindowRef} className="bg-[#F2F7F7] h-full flex flex-col p-12 gap-4 overflow-y-scroll ">
-        <DisplayMessages currentUser={currentUser} messageList={messageList} selectedUser={selectedUser} />
+        {selectedUser ? (
+          <DisplayMessages currentUser={currentUser} messageList={messageList} selectedUser={selectedUser} />
+        ) : (
+          <div className="flex flex-col items-center gap-2">
+            <img src={sadMan} className="w-[450px]"></img>
+            <h3 className="text-md xl:text-2xl font-bold text-primary_grey">Alone in the Chat-o-sphere?</h3>
+            <p className="text-sm xl:text-lg font text-primary_grey">Choose a friend from the list to chat with</p>
+          </div>
+        )}
       </div>
     </>
   );

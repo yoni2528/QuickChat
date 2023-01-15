@@ -5,5 +5,5 @@ if (import.meta.env.MODE === "production") {
 }
 
 if (import.meta.env.MODE === "development") {
-  BASE_URL = "http://192.168.1.81:3000";
+  BASE_URL = "http://192.168.46.6:3000";
 }
