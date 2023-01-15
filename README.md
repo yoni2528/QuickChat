@@ -1,57 +1,41 @@
-<h1>QuickChat</h1>
+# QuickChat
+QuickChat is a real-time messaging app that allows users to communicate with their friends in real-time.
 
-<h2><a href="https://radiant-ganache-5a0f50.netlify.app/">Live Demo</a></h2>
+## [Live Demo](https://radiant-ganache-5a0f50.netlify.app/)
 
-<h2>Features</h2>
-<ul>
-  <li>Real-time messaging with friends</li>
-  <li>Login and Signup functionality</li>
-</ul>
+## Features
+- Real-time messaging with friends
+- Login and Signup functionality
 
-<h2>Getting Started</h2>
-<p>These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.</p>
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-<h3>Prerequisites</h3>
-<ul>
-  <li>Node.js and npm (latest versions recommended)</li>
-  <li>MongoDB (local or cloud-based)</li>
-  <li>Socket.io</li>
-</ul>
+### Prerequisites
+- Node.js and npm (latest versions recommended)
+- MongoDB (local or cloud-based)
+- Socket.io
 
-<h3>Installation</h3>
-<ol>
-  <li>Clone or download the repository</li>
-  <li>Set up a .env file in the root directory with the following variables:
-    <ul>
-      <li>DATABASE_URI: your MongoDB connection string</li>
-      <li>DATABASE_PASSWORD: your MongoDB password</li>
-      <li>JWT_SECRET: a secret string for encrypting sessions</li>
-      <li>JWT_EXPIRES_IN: expiration time for JWT tokens</li>
-    </ul>
-  </li>
-  <li>Open "server" folder and run npm install and npm start to install all project dependencies and start the server on localhost:3000</li>
-  <li>Open "client" folder and run npm install and npm start to install all project dependencies and start the front-end on localhost:3000</li>
-</ol>
+### Installation
+1. Clone or download the repository
+2. Set up a .env file in the root directory with the following variables:
+    - MONGO_URL: your MongoDB connection string
+    - MONGO_PASS: your MongoDB password
+    - JWT_SECRET: a secret string for encrypting sessions
+3. Open "server" folder and run npm install and npm start to install all project dependencies and start the server on localhost:3000
+4. Open "client" folder and run npm install and npm start to install all project dependencies and start the front-end on localhost:3000
 
-<h3>Built With</h3>
-<ul>
-  <li>React - JavaScript library for building user interfaces</li>
-  <li>Node.js - JavaScript runtime for building server-side applications</li>
-  <li>Express - Web application framework for Node.js</li>
-  <li>MongoDB - NoSQL database for storing user data</li>
-  <li>Socket.io - Real-time engine for communication</li>
-  <li>TailWind css</li>
-</ul>
+### Built With
+- React - JavaScript library for building user interfaces
+- Node.js - JavaScript runtime for building server-side applications
+- Express - Web application framework for Node.js
+- MongoDB - NoSQL database for storing user data
+- Socket.io - Real-time engine for communication
+- TailWind css
 
-<h3>Authors</h3>
-<ul>
-  <li>yoni2528(https://github.com/yoni2528) - Initial development and maintenance</li>
-</ul>
+### Authors
+- [yoni2528](https://github.com/yoni2528) - Initial development and maintenance
 
-<h3>Future Development</h3>
-<ul>
-  <li>Add the ability to send images and files</li>
-  <li>Add the ability to create and join groups</li>
-  <li>Add the ability to see whos online and whos not</li>
-  <li>Add the ability to make video and audio calls</li>
-</ul>
+### Future Development
+- Add the ability to send images and files
+- Add the ability to create and join groups
+- Add the ability to make video and audio calls
